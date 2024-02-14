@@ -1,0 +1,33 @@
+body{
+
+    background-color: #000000;
+    color: #00CC00;
+    font-family: monospace;
+    font-size: 18px;
+}
+
+em {
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+p{
+    font-family: monospace;
+    font-size: 18px;
+}
+
+h1{
+    font-family: monospace;
+    font-size: 18px;
+}
+
+h2{
+    font-family: monospace;
+    font-size: 18px;
+}
+
+h3{
+    font-family: monospace;
+    font-size: 18px;
+}
