@@ -4,6 +4,7 @@
         <?php
         saludar();
         ?>
+        </div>
 </header>
 
 

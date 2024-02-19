@@ -29,13 +29,14 @@
 	<main>
 	  <article>
 		<h1>Iniciar sesión</h1>
-        <form action="procesarLogin.php" method="post">
+        <form action="procesarLogin.php" method="post"> 
             <fieldset>
                 <legend>Introduzca sus datos </legend>
                 <label>Usuario:</label><input type="text" name="usuario"> 
                 <label>Contraseña:</label><input type="password" name="contraseña"> 
                 <button type="submit">Siguiente</button>
             </fieldset>
+        </form>
 	  </article>
 	</main>
 
