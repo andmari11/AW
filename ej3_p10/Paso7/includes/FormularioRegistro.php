@@ -1,6 +1,5 @@
 <?php
-require_once __DIR__.'/Formulario.php';
-require_once __DIR__.'/Usuario.php';
+namespace es\ucm\fdi\aw;
 
 class FormularioRegistro extends Formulario
 {
@@ -14,9 +13,10 @@ class FormularioRegistro extends Formulario
         $nombre = $datos['nombre'] ?? '';
 
         // Se generan los mensajes de error si existen.
-        $htmlErroresGlobales = self::generaListaErroresGlobales($this->errores);
-        $erroresCampos = self::generaErroresCampos(['nombreUsuario', 'nombre', 'password', 'password2'], $this->errores, 'span', array('class' => 'error'));
+        $htmlErroresGlobales = $this->generaListaErroresGlobales($this->errores); 
+        $erroresCampos = $this->generaErroresCampos(['nombreUsuario', 'nombre', 'password', 'password2'], $this->errores, 'span', ['class' => 'error']); 
 
+        //codigo html
         $html = <<<EOF
         $htmlErroresGlobales
         <fieldset>
@@ -55,26 +55,17 @@ class FormularioRegistro extends Formulario
         $this->errores = [];
 
         $nombreUsuario = trim($datos['nombreUsuario'] ?? '');
-        $nombreUsuario = filter_var($nombreUsuario, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        if ( ! $nombreUsuario || mb_strlen($nombreUsuario) < 5) {
-            $this->errores['nombreUsuario'] = 'El nombre de usuario tiene que tener una longitud de al menos 5 caracteres.';
-        }
-
         $nombre = trim($datos['nombre'] ?? '');
-        $nombre = filter_var($nombre, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        if ( ! $nombre || mb_strlen($nombre) < 5) {
-            $this->errores['nombre'] = 'El nombre tiene que tener una longitud de al menos 5 caracteres.';
-        }
 
         $password = trim($datos['password'] ?? '');
         $password = filter_var($password, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        if ( ! $password || mb_strlen($password) < 5 ) {
+        if (strlen($password) < 5 ) {
             $this->errores['password'] = 'El password tiene que tener una longitud de al menos 5 caracteres.';
         }
 
         $password2 = trim($datos['password2'] ?? '');
         $password2 = filter_var($password2, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        if ( ! $password2 || $password != $password2 ) {
+        if ($password != $password2) {
             $this->errores['password2'] = 'Los passwords deben coincidir';
         }
 
@@ -82,8 +73,10 @@ class FormularioRegistro extends Formulario
             $usuario = Usuario::buscaUsuario($nombreUsuario);
 	
             if ($usuario) {
-                $this->errores[] = "El usuario ya existe";
+                
+                $this->errores[] = "El usuario ya existe"; 
             } else {
+
                 $usuario = Usuario::crea($nombreUsuario, $password, $nombre, Usuario::USER_ROLE);
                 $_SESSION['login'] = true;
                 $_SESSION['nombre'] = $usuario->getNombre();
@@ -91,3 +84,4 @@ class FormularioRegistro extends Formulario
         }
     }
 }
+?>

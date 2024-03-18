@@ -3,13 +3,13 @@
 <head>
 	<meta charset="UTF-8">
     <title><?= $tituloPagina ?></title>
-    <link rel="stylesheet" type="text/css" href="estilo.css" />
+    <link rel="stylesheet" type="text/css" href="<?= RUTA_CSS ?>/estilo.css" />
 </head>
 <body>
 <div id="contenedor">
 <?php
-require(dirname(__DIR__).'/comun/cabecera.php');
-require(dirname(__DIR__).'/comun/sidebarIzq.php');
+require(RAIZ_APP.'/vistas/comun/cabecera.php');
+require(RAIZ_APP.'/vistas/comun/sidebarIzq.php');
 ?>
 	<main>
 		<article>
@@ -17,8 +17,8 @@ require(dirname(__DIR__).'/comun/sidebarIzq.php');
 		</article>
 	</main>
 <?php
-require(dirname(__DIR__).'/comun/sidebarDer.php');
-require(dirname(__DIR__).'/comun/pie.php');
+require(RAIZ_APP.'/vistas/comun/sidebarDer.php');
+require(RAIZ_APP.'/vistas/comun/pie.php');
 ?>
 </div>
 </body>

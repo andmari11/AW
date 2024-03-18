@@ -14,10 +14,10 @@ class FormularioLogin extends Formulario
         $nombreUsuario = $datos['nombreUsuario'] ?? '';
 
         // Se generan los mensajes de error si existen.
-        $htmlErroresGlobales = self::generaListaErroresGlobales($this->errores);
-        $erroresCampos = self::generaErroresCampos(['nombreUsuario', 'password'], $this->errores, 'span', array('class' => 'error'));
+        $htmlErroresGlobales = $this->generaListaErroresGlobales($this->errores); 
+        $erroresCampos = $this->generaErroresCampos(['nombreUsuario', 'password'], $this->errores, 'span', ['class' => 'error']); 
 
-        // Se genera el HTML asociado a los campos del formulario y los mensajes de error.
+        // Se genera el HTML 
         $html = <<<EOF
         $htmlErroresGlobales
         <fieldset>
@@ -43,15 +43,15 @@ class FormularioLogin extends Formulario
     protected function procesaFormulario(&$datos)
     {
         $this->errores = [];
-        $nombreUsuario = trim($datos['nombreUsuario'] ?? '');
-        $nombreUsuario = filter_var($nombreUsuario, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        if ( ! $nombreUsuario || empty($nombreUsuario) ) {
+        $nombreUsuario = $datos['nombreUsuario'] ?? '';
+
+        if (empty($nombreUsuario)) { 
             $this->errores['nombreUsuario'] = 'El nombre de usuario no puede estar vacío';
         }
         
-        $password = trim($datos['password'] ?? '');
-        $password = filter_var($password, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        if ( ! $password || empty($password) ) {
+        $password = $datos['password'] ?? '';
+
+        if (empty($password)) { 
             $this->errores['password'] = 'El password no puede estar vacío.';
         }
         
@@ -59,7 +59,7 @@ class FormularioLogin extends Formulario
             $usuario = Usuario::login($nombreUsuario, $password);
         
             if (!$usuario) {
-                $this->errores[] = "El usuario o el password no coinciden";
+                $this->errores[] = "No ha sido posible iniciar sesión"; 
             } else {
                 $_SESSION['login'] = true;
                 $_SESSION['nombre'] = $usuario->getNombre();
@@ -68,3 +68,4 @@ class FormularioLogin extends Formulario
         }
     }
 }
+?>
