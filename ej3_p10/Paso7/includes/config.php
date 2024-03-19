@@ -32,8 +32,7 @@ date_default_timezone_set('Europe/Madrid');
  * @see http://www.php-fig.org/psr/psr-4/
  */
 spl_autoload_register(function ($class) {
-    
-    // project-specific namespace prefix
+  // project-specific namespace prefix
     $prefix = 'es\\ucm\\fdi\\aw\\';
     
     // base directory for the namespace prefix
@@ -57,10 +56,12 @@ spl_autoload_register(function ($class) {
     if (file_exists($file)) {
         require $file;
     }
-});
+});   
+   
+
 
 // Inicializa la aplicación
-$app = Aplicacion::getInstance();
+$app =Aplicacion::getInstance();
 $app->init(array('host'=>BD_HOST, 'bd'=>BD_NAME, 'user'=>BD_USER, 'pass'=>BD_PASS));
 
 /**
