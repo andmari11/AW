@@ -51,6 +51,8 @@ $(document).ready(function() {
 			// Usuario ya existe, muestra un mensaje de error
 			$("#userOK").hide();
 			$("#userMal").show();
+			alert("El nombre de usuario ya está en uso");
+
 		} else {
 			// Usuario no existe, oculta el mensaje de error
 			$("#userOK").show();
