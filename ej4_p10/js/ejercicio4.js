@@ -21,7 +21,6 @@ $(document).ready(function() {
 			$("#correoOK").show();
 			$("#correoMal").hide();
 		} else {			
-			// correo invalido: ponemos una marca y nos quejamos
 
 			// tu código aquí: coloca la marca correcta
 
@@ -46,15 +45,12 @@ $(document).ready(function() {
 
 	function usuarioExiste(data,status) {
 		// tu codigo aqui
-		// Por ejemplo, puedes verificar si el usuario ya existe
 		if (data === "existe") {
-			// Usuario ya existe, muestra un mensaje de error
 			$("#userOK").hide();
 			$("#userMal").show();
 			alert("El nombre de usuario ya está en uso");
 
 		} else {
-			// Usuario no existe, oculta el mensaje de error
 			$("#userOK").show();
 			$("#userMal").hide();
 		}
